@@ -3,7 +3,7 @@
 
 1. Simplicity
 1. Open source
-1. Private
+1. Privacy
 1. Portability
 1. Automation
 1. Command line interface (CLI)
