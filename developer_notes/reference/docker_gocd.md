@@ -12,3 +12,7 @@ To check the server logs, you can do this:
 docker exec -i -t CONTAINER-ID tail -f /godata/logs/go-server.log
 ```
 
+# Exiting the container
+The `exit` command terminates your session.  
+
+Because the exec command opens a new TTY terminal you must enter `Ctrl^P^Q` to switch back to your previous terminal. 
