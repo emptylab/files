@@ -45,12 +45,12 @@ Then visit: http://165.22.235.94:8153/
 ```
 docker build https://github.com/gocd/docker-gocd-agent-ubuntu-18.04.git -t gocd/docker-gocd-agent
 ```
-
-Rename the docker instant -t appropriate-agent-name 
+`-t` specifies the name of the docker image 
 
 ## Step 5:  Start a GoCD agent
 
 Find the name of the server container
+
 `docker container ls` (ex. serene_joliot)
 
 Run the agent
