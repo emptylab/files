@@ -42,18 +42,18 @@ Then visit: http://165.22.235.94:8153/
 
 ## Step 4: install/start a GoCD agent
 
+```
 docker build https://github.com/gocd/docker-gocd-agent-ubuntu-18.04.git -t gocd/docker-gocd-agent
-
-Or the corresponding distro version of docker gocd agent.
+```
 
 Rename the docker instant -t appropriate-agent-name 
 
 ## Step 5:  Start a GoCD agent
 
-run gocd server:
-docker run -d -p8153:8153 -p8154:8154 gocd/docker-gocd-server
-
 Find the name of the server container
-docker container ls (ex. serene_joliot)
+`docker container ls` (ex. serene_joliot)
 
+Run the agent
+```
 docker run -d -e GO_SERVER_URL=https://$(docker inspect --format='{{(index (index .NetworkSettings.IPAddress))}}' serene_joliot):8154/go gocd/docker-gocd-agent
+```
