@@ -15,7 +15,7 @@ Next step: install the GoCD Server on that droplet.
 * docker pull gocd/gocd-server
 * docker build git@github.com:gocd/docker-gocd-server.git (and then wait quite some time)
 
-Some error messages
+Some error messages related to locale set up.
 
 ```
 failed to set locale!                                                
