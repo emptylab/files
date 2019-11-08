@@ -1,7 +1,9 @@
 
+## Misc Notes
+
 Related GitHub issue https://github.com/gocd/docker-gocd-server/issues/88
 
-Next step: install docker in a DigitalOcean droplet. Done.
+## Step 1: install docker in a DigitalOcean droplet. Done.
 
 Create a Docker Droplet from DigitalOcean.
 
@@ -10,7 +12,7 @@ Create a Docker Droplet from DigitalOcean.
 * $5/month
 * SSH with existing SSH key `root@ipaddress`
 
-Next step: install the GoCD Server on that droplet.
+## Step 2: install the GoCD Server on that droplet.
 
 * docker pull gocd/gocd-server
 * docker build git@github.com:gocd/docker-gocd-server.git (and then wait quite some time)
@@ -31,3 +33,13 @@ failed to set locale!
 failed to set locale!                                                
 [warning] No definition for LC_IDENTIFICATION category found         
 ```
+
+## Step 3: start the GoCD Server
+
+docker run -d -p8153:8153 -p8154:8154 gocd/docker-gocd-server
+
+Then visit: http://165.22.235.94:8153/
+
+## Step 4: install/start a GoCD agent
+
+TODO
