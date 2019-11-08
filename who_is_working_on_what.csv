@@ -3,3 +3,4 @@ task-1, 2, Set up continuous deployment to Digital Ocean, Shaun, task_notes/task
 task-2, 1, Implement layer switching, Jesse,
 task-3, 1, Support multiple Google Drive data sources, Antonio,
 task-4, 1, Make sure that the server-side environment works locally, Shaun Antonio, task_notes/task_4.md
+task-5, 9, Set up GoCD analytics, Shaun, https://www.gocd.org/analytics.html
