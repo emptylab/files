@@ -1,6 +1,6 @@
 
 # Useful Docker commands
-You can find the container ID using `docker ps`.
+You can find the container ID, image name, instance name, ports, status etc..  using `docker ps`.
 
 # Getting into the container
 Sometimes, you need a shell inside the container, docker provides an easy way to do that:
