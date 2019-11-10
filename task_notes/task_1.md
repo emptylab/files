@@ -3,6 +3,8 @@
 
 Related GitHub issue https://github.com/gocd/docker-gocd-server/issues/88
 
+Digital Ocean Docker Droplet Welcome Email: https://go.digitalocean.com/index.php/email/emailWebview?aliId=j0hXccfLLgkP5D0HkpLrQN6A6E6oH%2BXE2dEPaZqBu6ZdpS8KDpW%2BTw%3D%3D
+
 ## Step 1: install docker in a DigitalOcean droplet. Done.
 
 Create a Docker Droplet from DigitalOcean.
