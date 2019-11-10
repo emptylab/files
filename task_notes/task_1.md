@@ -34,7 +34,7 @@ failed to set locale!
 [warning] No definition for LC_IDENTIFICATION category found         
 ```
 
-## Step 3: start the GoCD Server container on that droplet.
+## Step 3: start the GoCD Server container on that droplet. Done.
 
 ```
 docker run -d -p8153:8153 -p8154:8154 gocd/docker-gocd-server
@@ -59,6 +59,7 @@ Run the agent
 ```
 docker run -d -e GO_SERVER_URL=https://$(docker inspect --format='{{(index (index .NetworkSettings.IPAddress))}}' serene_joliot):8154/go gocd/docker-gocd-agent
 ```
+
 ## What have we learned
 
 The GoCD Server/Agent hangs when trying to run a simple build. We are seeing errors in the Docker logs.
@@ -73,12 +74,12 @@ Some alternatives:
 1. Install Docker in a droplet and `docker run` both a GoCD Server container and GoCD Agent container.
 1. Create our own container with both an GoCD Server and GoCD Agent and docker run that one container.
 1. Investigate the RAM requirements for running a GoCD Server Container and Agent Container. Done.
-1. Retry the above steps with 2 GB RAM.**
+1. Retry the above steps with 2 GB RAM. Done.
 
 Related: 
 
-https://forums.docker.com/t/minimum-hardware-requirement-to-run-docker/28072/2
-https://docs.docker.com/config/containers/resource_constraints
+* https://forums.docker.com/t/minimum-hardware-requirement-to-run-docker/28072/2
+* https://docs.docker.com/config/containers/resource_constraints
 
 ## Investigation of the RAM requirements for running GoCD Server and GoCD Agent
 
@@ -111,6 +112,8 @@ GoCD Agent requirements
 
 Based on the above, a droplet with 2 GB might be sufficient.
 
-## Retry the above steps with 2 GB RAM
+## Retry the above steps with 2 GB RAM. Done.
+
+The pipeline succeeded. :-)
 
 
