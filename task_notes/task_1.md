@@ -36,7 +36,9 @@ failed to set locale!
 
 ## Step 3: start the GoCD Server container on that droplet.
 
+```
 docker run -d -p8153:8153 -p8154:8154 gocd/docker-gocd-server
+```
 
 Then visit: http://165.22.235.94:8153/
 
@@ -70,7 +72,8 @@ Some alternatives:
 1. Install GoCD Agent and Server directly in a droplet.
 1. Install Docker in a droplet and `docker run` both a GoCD Server container and GoCD Agent container.
 1. Create our own container with both an GoCD Server and GoCD Agent and docker run that one container.
-1. Investigate the RAM requirements for running a GoCD Server Container and Agent Container.
+1. Investigate the RAM requirements for running a GoCD Server Container and Agent Container. Done.
+1. Retry the above steps with 2 GB RAM.**
 
 Related: 
 
@@ -107,4 +110,7 @@ GoCD Agent requirements
 * CPU - minimum 2GHz
 
 Based on the above, a droplet with 2 GB might be sufficient.
+
+## Retry the above steps with 2 GB RAM
+
 
