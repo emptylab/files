@@ -181,4 +181,14 @@ docker [build|run] --memory=500m --cpu-period=100000 --cpu-quota=50000 ...
 
 That means the build/run command can use up to 500 MB of RAM and only 50% of the CPU time. The percentage of CPU time is calculated as quote/period. The period must be between 100 and 10,000 microseconds; choose the period based on how much flexibility to give the scheduler.
 
+Resource     | Minimum RAM     | CPU quota/period
+--           |                 |
+GoCD Server  | 1 GB - 2 GB     | 
+GoCD Agent   | 128 MB - 256 MB | 
+
+The `npm run build` takes its memory in part from `--max-old-space-size=`
+
+For more on `--max-old-space-size` see 
+* https://erikcorry.blogspot.com/2012/11/memory-management-flags-in-v8.html
+* https://stackoverflow.com/questions/48387040/nodejs-recommended-max-old-space-size
 
