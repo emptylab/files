@@ -192,3 +192,23 @@ For more on `--max-old-space-size` see
 * https://erikcorry.blogspot.com/2012/11/memory-management-flags-in-v8.html
 * https://stackoverflow.com/questions/48387040/nodejs-recommended-max-old-space-size
 
+This is the command that I have not been able to run due to memory constraints.
+```
+docker build --build-args NODE_OPTIONS="--max-old-space-size=325" --memory=900m --memory-swap=-1 --cpu-period=100000 --cpu-quota=50000 --no-cache --tag farm_app_image:latest --file Dockerfile .
+```
+
+### Try to use Swap
+
+https://www.linux.com/news/all-about-linux-swap-space/
+
+* How can we use the swap?
+* How much swap space does the machine have?
+  * Swap file - special file
+  * Swap partition - partition soley for swapping
+* What if `swapon -s` has no output?
+
+My SO Questions: 
+
+* https://stackoverflow.com/q/58895103/1108891 
+* https://stackoverflow.com/q/58894667/1108891
+
