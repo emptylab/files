@@ -116,4 +116,27 @@ Based on the above, a droplet with 2 GB might be sufficient.
 
 The pipeline succeeded. :-)
 
+## Step 6: Build an ASP.NET Core Docker image. 
 
+There are basic instructions here: https://docs.docker.com/engine/examples/dotnetcore/
+
+There is a sample here: https://github.com/dotnet/dotnet-docker/tree/master/samples/aspnetapp
+
+We emulated that sample like this: 
+
+```
+$ cd ~/mylocalfarm/mylocalfarm/
+$ docker build --pull -t farm-land-lasanga .
+```
+
+This did not work until installing NodeJS in the Dockerfile. 
+
+For `apt-get` to work in the Dockerfile, I needed to update my system clock.
+
+On WSL this is one approach:
+
+```
+sudo dpkg-reconfigure tzdata // select America > Vancouver
+```
+
+Then restart Docker from Windows.
