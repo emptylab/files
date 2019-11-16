@@ -146,3 +146,39 @@ Then restart Docker from Windows.
 ## Step 7: Install Docker in the GoCD Agent
 
 I opened an issue about that here: https://github.com/gocd/docker-gocd-agent-ubuntu-18.04/issues/2
+
+```
+# run the GoCD agent image (named hungry_lalande)
+$ docker run -d gocd/docker-gocd-agent
+
+# attach to the GoCD agent container as root
+$ sudo docker exec --user root -i -t hungry_lalande /bin/bash
+
+# install docker in the GoCD agent
+root@2308f39c23fb:/# curl -fsSL https://get.docker.com -o get-docker.sh
+root@2308f39c23fb:/# sh get-docker.sh
+
+# add the GoCD user to the docker group
+root@2308f39c23fb:/# usermod -aG docker go
+
+# start docker
+root@2308f39c23fb:/# service docker start 
+
+# exit 
+root@2308f39c23fb:/# exit
+
+# save the new container
+$ docker commit hungry_lalande gocd/docker-gocd-agent-with-docker
+```
+
+## Step 8: Build the mylocalfarm/Dockerfile from GoCD in Digital Ocean
+
+This mostly worked, but the GoCD server would crash. It might be related to resource constraints. So, we have constrained the containers like this: 
+
+```
+docker [build|run] --memory=500m --cpu-period=100000 --cpu-quota=50000 ...
+```
+
+That means the build/run command can use up to 500 MB of RAM and only 50% of the CPU time. The percentage of CPU time is calculated as quote/period. The period must be between 100 and 10,000 microseconds; choose the period based on how much flexibility to give the scheduler.
+
+
