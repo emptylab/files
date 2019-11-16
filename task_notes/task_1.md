@@ -176,7 +176,7 @@ $ docker commit hungry_lalande gocd/docker-gocd-agent-with-docker
 This mostly worked, but the GoCD server would crash. It might be related to resource constraints. So, we have constrained the containers like this: 
 
 ```
-docker [build|run] --memory=500m --cpu-period=100000 --cpu-quota=50000 ...
+docker [build|run] --memory=500m --memory-swap=-1 --cpu-period=100000 --cpu-quota=50000 ...
 ```
 
 That means the build/run command can use up to 500 MB of RAM and only 50% of the CPU time. The percentage of CPU time is calculated as quote/period. The period must be between 100 and 10,000 microseconds; choose the period based on how much flexibility to give the scheduler.
