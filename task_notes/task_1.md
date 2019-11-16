@@ -142,3 +142,7 @@ sudo dpkg-reconfigure tzdata // select America > Vancouver
 ```
 
 Then restart Docker from Windows.
+
+## Step 7: Install Docker in the GoCD Agent
+
+I opened an issue about that here: https://github.com/gocd/docker-gocd-agent-ubuntu-18.04/issues/2
