@@ -232,7 +232,13 @@ In the Remote Server
 ssh root@138.197.140.250 "cd /tmp; docker stop $(docker ps -q); docker load -i farm_app_image.tar; docker run -d --name farm_app_container -p 80:80 farm_app_image"
 ```
 
-# Rebuild the World (work in progress)
+# Rebuild the World (this is still finicky)
+
+This is still finicky. Current remaining challenges: 
+
+1. Automatically register the agent-with-docker-cli with the server.
+2. Clarify in the below steps on which machine each bash command happens.
+3. Update the agent to limits its RAM to 256MB.
 
 ```
 # ssh into the droplet that contains the GoCD server & agent
@@ -259,7 +265,7 @@ echo $GO_SERVER_IP
 # binding it to the host's docker.sock, 
 # and giving it the GoCD Server's IP
 
-docker run -v /var/run/docker.sock:/var/run/docker.sock -d -e GO_SERVER_URL=https://$GO_SERVER_IP:8154/go gocd/docker-gocd-agent
+docker run -v /var/run/docker.sock:/var/run/docker.sock -d -e GO_SERVER_URL=https://$GO_SERVER_IP:8154/go gocd/docker-gocd-agent-with-docker
 
 # Checkpoint
 # Visit http://165.22.235.94:8153/ in a browser
@@ -297,5 +303,8 @@ ssh go@138.197.140.250
 # other helpful commands
 
 # get the id of the GoCD server container
-echo $(docker ps -q --filter ancestor=gocd/docker-gocd-server)
+docker ps -q --filter ancestor=gocd/docker-gocd-server
+
+# get a shell in a container
+docker exec -it <containerId> /bin/bash
 ```
