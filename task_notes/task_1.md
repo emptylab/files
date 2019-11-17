@@ -243,7 +243,7 @@ This is still finicky. Current remaining challenges:
 ```
 # ssh into the droplet that contains the GoCD server & agent
 
-eval `ssh-start -s`
+eval `ssh-agent -s`
 ssh-add ~/.ssh/emptylab
 ssh root@165.22.235.94
 
@@ -278,6 +278,7 @@ docker run -v /var/run/docker.sock:/var/run/docker.sock -d -e GO_SERVER_URL=http
 # Important: do NOT paste over the opening <server> tag.
 
 # setup SSH for the GoCD server
+# important: repeat this step for each GoCD agent
 
 # exec into the GoCD container (as the go user)
 docker exec -it -u go -w /home/go <container_id> /bin/bash
