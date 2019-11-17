@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="132">
+  <server agentAutoRegisterKey="ae866ac8-9dc4-423f-990c-dbf2440c3665" webhookSecret="8c41936e-6624-402d-afaf-e96155f0cafd" commandRepositoryLocation="default" serverId="00b0f40a-d2f7-40f0-9627-3da88c2e397e" tokenGenerationKey="c0f08f90-59f3-4803-8b44-2f4639a5b682">
+    <siteUrls />
+    <backup emailOnSuccess="true" emailOnFailure="true" />
+    <artifacts>
+      <artifactsDir>artifacts</artifactsDir>
+      <purgeSettings>
+        <purgeStartDiskSpace>10.0</purgeStartDiskSpace>
+        <purgeUptoDiskSpace>10.0</purgeUptoDiskSpace>
+      </purgeSettings>
+    </artifacts>
+  </server>
+  <pipelines group="defaultGroup">
+    <pipeline name="DummyPipeline">
+      <materials>
+        <git url="https://github.com/mylocalfarm/mylocalfarm/" shallowClone="true" materialName="mylocalfarm" />
+      </materials>
+      <stage name="DummyStage" cleanWorkingDir="true">
+        <jobs>
+          <job name="DummyTask">
+            <tasks>
+              <exec command="ls" />
+              <exec command="docker">
+                <arg>build</arg>
+                <arg>--memory=600m</arg>
+                <arg>--memory-swap=20g</arg>
+                <arg>--cpu-period=100000</arg>
+                <arg>--cpu-quota=50000</arg>
+                <arg>--no-cache</arg>
+                <arg>--tag</arg>
+                <arg>farm_app_image:latest</arg>
+                <arg>--file</arg>
+                <arg>Dockerfile</arg>
+                <arg>.</arg>
+                <runif status="passed" />
+              </exec>
+              <exec command="/bin/bash">
+                <arg>-c</arg>
+                <arg>'save farm_app_image:latest &gt; farm_app_image.tar'</arg>
+                <runif status="passed" />
+              </exec>
+              <exec command="/bin/bash">
+                <arg>-c</arg>
+                <arg>ssh root@138.197.140.250 "cd /tmp; docker ps -q | xargs docker stop; docker system prune -f; docker load -i farm_app_image.tar; docker run -d --name farm_app_container -p 80:80 farm_app_image"</arg>
+                <runif status="passed" />
+              </exec>
+              <exec command="/bin/bash">
+                <arg>-c</arg>
+                <arg>scp farm_app_image.tar root@138.197.140.250:/tmp</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+  </pipelines>
+</cruise>
+
