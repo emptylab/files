@@ -232,7 +232,7 @@ In the Remote Server
 ssh root@138.197.140.250 "cd /tmp; docker stop $(docker ps -q); docker load -i farm_app_image.tar; docker run -d --name farm_app_container -p 80:80 farm_app_image"
 ```
 
-# Rebuild the World
+# Rebuild the World (work in progress)
 
 ```
 # ssh into the droplet that contains the GoCD server & agent
@@ -271,8 +271,31 @@ docker run -v /var/run/docker.sock:/var/run/docker.sock -d -e GO_SERVER_URL=http
 # Paste it here http://165.22.235.94:8153/go/admin/config_xml
 # Important: do NOT paste over the opening <server> tag.
 
-# other helpful commands:
+# setup SSH for the GoCD server
 
-# exec into the GoCD container, paste the backup XML into the cruise-config.xml
+# exec into the GoCD container (as the go user)
 docker exec -it -u go -w /home/go <container_id> /bin/bash
+
+# generate an `~/.ssh/id_rsa` and `~/.ssh_rsa.pub` key (for the go user)
+ssh-keygen -t rsa -b 4096 -C gocd-server
+
+# copy the public key and then paste it into DigitalOcean
+cat ~/.ssh/id_rsa.pub
+
+# add the mylocal.farm IP as a trusted host
+ssh-keyscan 138.197.140.250 > /home/go/.ssh/known_hosts
+
+# ssh into the mylocal.farm IP
+ssh root@138.197.140.250 
+
+# paste the public key to the trusted keys
+vim ~/.ssh/authorized_keys
+
+# test the connection
+ssh go@138.197.140.250 
+
+# other helpful commands
+
+# get the id of the GoCD server container
+echo $(docker ps -q --filter ancestor=gocd/docker-gocd-server)
 ```
