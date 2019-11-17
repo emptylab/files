@@ -171,7 +171,7 @@ root@2308f39c23fb:/# exit
 $ docker commit hungry_lalande gocd/docker-gocd-agent-with-docker
 ```
 
-## Step 8: Build the mylocalfarm/Dockerfile from GoCD in Digital Ocean
+## Step 8: Build the mylocalfarm/Dockerfile from GoCD in Digital Ocean. Done.
 
 This mostly worked, but the GoCD server would crash. It might be related to resource constraints. So, we have constrained the containers like this: 
 
@@ -211,4 +211,24 @@ My SO Questions:
 
 * https://stackoverflow.com/q/58895103/1108891 
 * https://stackoverflow.com/q/58894667/1108891
+
+
+The final solution was to optimize the npm run build command.
+
+## Step 9: Push the Docker image to the production host
+
+Add SSH key to GoCD server: https://docs.gocd.org/current/faq/docker_container_ssh_keys.html
+
+
+In the GoCD Machine
+
+```
+docker save farm_app_image > farm_app_image.tar     
+scp farm_app_image.tar root@138.197.140.250:/tmp    
+```
+
+In the Remote Server
+```
+ssh root@138.197.140.250 "cd /tmp; docker stop $(docker ps -q); docker load -i farm_app_image.tar; docker run -d --name farm_app_container -p 80:80 farm_app_image"
+```
 
