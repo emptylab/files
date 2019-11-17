@@ -232,3 +232,47 @@ In the Remote Server
 ssh root@138.197.140.250 "cd /tmp; docker stop $(docker ps -q); docker load -i farm_app_image.tar; docker run -d --name farm_app_container -p 80:80 farm_app_image"
 ```
 
+# Rebuild the World
+
+```
+# ssh into the droplet that contains the GoCD server & agent
+
+eval `ssh-start -s`
+ssh-add ~/.ssh/emptylab
+ssh root@165.22.235.94
+
+# stop and prune all containers
+
+docker ps -q | xargs -r docker stop
+docker system prune
+
+# start the GoCD server
+
+docker run -d -p8153:8153 -p8154:8154 gocd/docker-gocd-server
+
+# catpure the GoCD server IP Address
+
+GO_SERVER_IP=$(docker inspect --format='{{(index (index .NetworkSettings.IPAddress))}}' $(docker ps -q))
+echo $GO_SERVER_IP
+
+# start a GoCD agent, 
+# binding it to the host's docker.sock, 
+# and giving it the GoCD Server's IP
+
+docker run -v /var/run/docker.sock:/var/run/docker.sock -d -e GO_SERVER_URL=https://$GO_SERVER_IP:8154/go gocd/docker-gocd-agent
+
+# Checkpoint
+# Visit http://165.22.235.94:8153/ in a browser
+# 1. Check that the server loads.
+# 2. Check that an agent is available
+
+# Restore the config
+# Copy the `~/emptylab/files/task_notes/task_1/gocd_config_20191611.xml`
+# Paste it here http://165.22.235.94:8153/go/admin/config_xml
+# Important: do NOT paste over the opening <server> tag.
+
+# other helpful commands:
+
+# exec into the GoCD container, paste the backup XML into the cruise-config.xml
+docker exec -it -u go -w /home/go <container_id> /bin/bash
+```
