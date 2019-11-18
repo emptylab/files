@@ -1,3 +1,4 @@
 ID, Priority, Description, Who?, External Link
 task-1, 1, Set up continuous deployment to Digital Ocean, shaun,
-task-2, 1, Implement layer switching, Jesse,
+task-3, 5, Don't show layers until map is loaded, Jesse,
+task-4, 1, Setup OpenID Connect, Jesse | Shaun
