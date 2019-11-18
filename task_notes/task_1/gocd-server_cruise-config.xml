@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="132">
+  <server agentAutoRegisterKey="ba4312dc-dfa4-42c7-a63c-2635e68a0a36" webhookSecret="0638cb7c-8f42-4426-af77-17c63c808e98" commandRepositoryLocation="default" serverId="8f36dac1-c9ea-4698-a596-6e9aed59f5ae" tokenGenerationKey="c445f9bc-c6ff-4522-baa1-52d0fbbc0153">
+    <siteUrls />
+    <backup emailOnSuccess="true" emailOnFailure="true" />
+    <artifacts>
+      <artifactsDir>artifacts</artifactsDir>
+      <purgeSettings>
+        <purgeStartDiskSpace>10.0</purgeStartDiskSpace>
+        <purgeUptoDiskSpace>10.0</purgeUptoDiskSpace>
+      </purgeSettings>
+    </artifacts>
+  </server>
+  <pipelines group="defaultGroup">
+    <pipeline name="DummyPipeline">
+      <materials>
+        <git url="https://github.com/mylocalfarm/mylocalfarm/" shallowClone="true" materialName="mylocalfarm" />
+      </materials>
+      <stage name="TestPipelinePrerequisites" fetchMaterials="false">
+        <jobs>
+          <job name="TestPipelinePrerequisites">
+            <tasks>
+              <exec command="docker">
+                <arg>save</arg>
+                <arg>farm_app_image:latest</arg>
+                <arg>--output</arg>
+                <arg>farm_app_image.tar</arg>
+                <runif status="passed" />
+              </exec>
+              <exec command="/bin/bash">
+                <arg>-c</arg>
+                <arg>ssh -q root@138.197.140.250 exit</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+      <stage name="Build">
+        <jobs>
+          <job name="Build">
+            <tasks>
+              <exec command="docker">
+                <arg>build</arg>
+                <arg>--memory=600m</arg>
+                <arg>--memory-swap=20g</arg>
+                <arg>--cpu-period=100000</arg>
+                <arg>--cpu-quota=50000</arg>
+                <arg>--no-cache</arg>
+                <arg>--tag</arg>
+                <arg>farm_app_image:latest</arg>
+                <arg>--file</arg>
+                <arg>Dockerfile</arg>
+                <arg>.</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+      <stage name="Deploy" cleanWorkingDir="true">
+        <jobs>
+          <job name="Deploy">
+            <tasks>
+              <exec command="docker">
+                <arg>save</arg>
+                <arg>farm_app_image:latest</arg>
+                <arg>--output</arg>
+                <arg>farm_app_image.tar</arg>
+                <runif status="passed" />
+              </exec>
+              <exec command="/bin/sh">
+                <arg>-c</arg>
+                <arg>scp farm_app_image.tar root@138.197.140.250:/tmp</arg>
+                <runif status="passed" />
+              </exec>
+              <exec command="/bin/sh">
+                <arg>-c</arg>
+                <arg>ssh root@138.197.140.250 "cd /tmp; docker ps -q | xargs docker stop; docker system prune -f; docker load -i farm_app_image.tar; docker run -d --name farm_app_container -p 80:80 farm_app_image"</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+  </pipelines>
+</cruise>
+
