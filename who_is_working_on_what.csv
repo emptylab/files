@@ -1,7 +1,7 @@
 ID, Priority, Description, Who?, External Link, Status
-task-1, 2, Set up continuous deployment to Digital Ocean, Shaun, task_notes/task_1.md,
-task-2, 1, Implement layer switching, Jesse, ,
+task-1, 2, Set up continuous deployment to Digital Ocean, Shaun, task_notes/task_1.md, Done
+task-2, 1, Implement layer switching, Jesse, , Done
 task-3, 1, Support multiple Google Drive data sources, Antonio, ,
-task-4, 1, Make sure that the server-side environment works locally, Shaun Antonio, task_notes/task_4.md,
+task-4, 1, Make sure that the server-side environment works locally, Shaun Antonio, task_notes/task_4.md, Done
 task-5, 9, Set up GoCD analytics, Shaun, https://www.gocd.org/analytics.html,
-task-6, 1, Point mylocal.farm at Digital Ocean instead of Azure, ,
+task-6, 1, Point mylocal.farm at Digital Ocean instead of Azure, task_notes/task_6.md, Done
