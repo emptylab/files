@@ -6,8 +6,8 @@ task-4, 1, Make sure that the server-side environment works locally, Shaun | Ant
 task-5, 9, Set up GoCD analytics, Shaun, https://www.gocd.org/analytics.html,
 task-6, 1, Point mylocal.farm at Digital Ocean instead of Azure, Shaun, task_notes/task_6.md, Done
 task-7, 1, Setup OpenID Connect, Jesse | Shaun, task_notes/task_7.md,
-task-7-1, 1, Introduce an '~/totp/email/${email}' endpoint that receives an email address, Shaun, n/a,
-task-7-2, 1, Send a '~/totp/auth/${password}' link to the email that '~/totp/email' receives, Shaun, n/a,
-task-7-3, 1, Introduce an endpoint that handles the '~/totp/auth/${password}' link, Shaun, n/a,
-task-7-4, 1, When the '~/totp/auth/${password}' is valid - send an access_token, Shaun, n/a,
-task-7-5, 1, When the '~/totp/auth/${password}' is invalid - send a 401 response, Shaun, n/a,
+task-7-1, 1, Introduce an 'POST ~/login' endpoint that receives an email address, Shaun, n/a,
+task-7-2, 1, Send a '~/authenticate/${password}' link to that email, Shaun, n/a,
+task-7-3, 1, Introduce an endpoint that handles the '~/authenticate/${password}' link, Shaun, n/a,
+task-7-4, 1, When the '~/authenticate/${password}' is valid - send an access_token, Shaun, n/a,
+task-7-5, 1, When the '~/authenticate/${password}' is invalid - send a 401 response, Shaun, n/a,
