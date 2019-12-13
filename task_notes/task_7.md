@@ -8,18 +8,18 @@ https://openid.net/specs/openid-connect-core-1_0.html
 
 # API Contract
 
-Login - Initiate
+**Log In - Initiate** Sends an email with a one-time password link.
 ```
 POST ~/login
 { email }
 ```
 
-Login - Complete
+**Log In - Complete** Gets an `access_token` and `id_tokden` from the server.
 ```
 GET ~/authenticate/${one-time-password}
 ```
 
-Log out: The browser simply clears the `access_token` and `id_token` from browser storage.
+To log out, the browser simply clears the `access_token` and `id_token` from browser storage.
 
 # Notes from our chat conversation
 
