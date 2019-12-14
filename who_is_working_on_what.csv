@@ -11,4 +11,4 @@ task-7-2, 1, Send a '~/authenticate/${password}' link to that email, Shaun, n/a,
 task-7-3, 1, Introduce an endpoint that handles the '~/authenticate/${password}' link, Shaun, n/a,
 task-7-4, 1, When the '~/authenticate/${password}' is valid - send an access_token, Shaun, n/a,
 task-7-5, 1, When the '~/authenticate/${password}' is invalid - send a 401 response, Shaun, n/a,
-task-8, 1, Fix continuous deployment, Shaun, n/a,
+task-8, 1, Fix continuous deployment, Shaun, n/a, Done
