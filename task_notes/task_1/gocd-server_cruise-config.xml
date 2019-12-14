@@ -12,7 +12,7 @@
     </artifacts>
   </server>
   <pipelines group="defaultGroup">
-    <pipeline name="DummyPipeline">
+    <pipeline name="DummyPipeline" lockBehavior="unlockWhenFinished">
       <materials>
         <git url="https://github.com/mylocalfarm/mylocalfarm/" shallowClone="true" materialName="mylocalfarm" />
       </materials>
@@ -58,7 +58,7 @@
           </job>
         </jobs>
       </stage>
-      <stage name="Deploy" cleanWorkingDir="true">
+      <stage name="Deploy" fetchMaterials="false" cleanWorkingDir="true">
         <jobs>
           <job name="Deploy">
             <tasks>
@@ -76,7 +76,7 @@
               </exec>
               <exec command="/bin/sh">
                 <arg>-c</arg>
-                <arg>ssh root@138.197.140.250 "cd /tmp; docker ps -q | xargs docker stop; docker system prune -f; docker load -i farm_app_image.tar; docker run -d --name farm_app_container -p 80:80 farm_app_image"</arg>
+                <arg>ssh root@138.197.140.250 "cd /tmp; docker ps -q | xargs docker stop; docker system prune -f; docker load -i farm_app_image.tar; docker run -d --name farm_app_container -p 8080:80 farm_app_image"</arg>
                 <runif status="passed" />
               </exec>
             </tasks>
@@ -86,4 +86,3 @@
     </pipeline>
   </pipelines>
 </cruise>
-
