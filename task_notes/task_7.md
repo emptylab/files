@@ -1,6 +1,19 @@
-# Time-base One-Time Password (TOTP)
+# One Time Password Approaches
 
-- https://en.wikipedia.org/wiki/Time-based_One-time_Password_algorithm
+Based on my current, limited reading, TOTP wins because each one-time password is time-limited by definion.
+
+Comparison of HOTP with TOTP
+
+- See https://crypto.stackexchange.com/a/2221/75183
+
+HMAC-based One-Time Password (HOTP)
+
+- See https://tools.ietf.org/html/rfc4226
+
+Time-based One-Time Password (TOTP)
+
+- See https://en.wikipedia.org/wiki/Time-based_One-time_Password_algorithm
+- See also https://tools.ietf.org/html/rfc6238
 
 # SMTP Email Provider
 
