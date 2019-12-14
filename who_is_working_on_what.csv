@@ -1,13 +1,14 @@
-ID, Priority, Description, Who?, External Link, Status
-task-1, 2, Set up continuous deployment to Digital Ocean, Shaun, task_notes/task_1.md, Done
+ID, Priority, Description, Who?, External Links, Status
+task-1, 2, Set up continuous deployment to Digital Ocean, Shaun, n/a, Done
 task-2, 1, Implement layer switching, Jesse, n/a, Done
 task-3, 1, Support multiple Google Drive data sources, Antonio, n/a,
-task-4, 1, Make sure that the server-side environment works locally, Shaun | Antonio, task_notes/task_4.md, Done
+task-4, 1, Make sure that the server-side environment works locally, Shaun | Antonio, n/a, Done
 task-5, 9, Set up GoCD analytics, Shaun, https://www.gocd.org/analytics.html,
-task-6, 1, Point mylocal.farm at Digital Ocean instead of Azure, Shaun, task_notes/task_6.md, Done
-task-7, 1, Setup OpenID Connect, Jesse | Shaun, task_notes/task_7.md,
+task-6, 1, Point mylocal.farm at Digital Ocean instead of Azure, Shaun, n/a, Done
+task-7, 1, Setup OpenID Connect, Jesse | Shaun, n/a,
 task-7-1, 1, Introduce an 'POST ~/login' endpoint that receives an email address, Shaun, n/a,
 task-7-2, 1, Send a '~/authenticate/${password}' link to that email, Shaun, n/a,
 task-7-3, 1, Introduce an endpoint that handles the '~/authenticate/${password}' link, Shaun, n/a,
 task-7-4, 1, When the '~/authenticate/${password}' is valid - send an access_token, Shaun, n/a,
 task-7-5, 1, When the '~/authenticate/${password}' is invalid - send a 401 response, Shaun, n/a,
+task-8, 1, Fix continuous deployment, Shaun, n/a,

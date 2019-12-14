@@ -10,33 +10,35 @@ https://openid.net/specs/openid-connect-core-1_0.html
 
 **Log In - Initiate** Sends an email with a one-time password link.
 ```
-POST ~/login
+POST ~/api/login
 { email }
 ```
 
 **Log In - Complete** Gets an `access_token` and `id_tokden` from the server.
 ```
-GET ~/authenticate/${one-time-password}
+GET ~/api/login/${one-time-password}
 ```
 
 To log out, the browser simply clears the `access_token` and `id_token` from browser storage.
 
 # Notes from our chat conversation
 
-We have had conversations about this in Telegram starting around 06 December.
+We have had conversations about this in Telegram starting around 06 December. These notes capture some of the ideas from the conversation.
+
+## General Ideas
 
 * Hash the email.
 * Use a one-time password that's associated with the email.
 * The link could include 1. the encrypted email and 2. the one-time password.
 
-# Authentication Alternatives
+## Authentication Alternatives
 
 Email only, receive a link at the email (link acts as the password)
 * (+) No database to support
 * (+) Hard code the email addrses
 * (+) Probably easier for end-users (no password)
 
-# Email Storage Alternatives
+## Email Storage Alternatives
 
 Store authorizated email in a database.
 * (-) Requirement to support a database.
@@ -53,7 +55,7 @@ Hard code a hash of authorized emails in the code base.
 * (+) Less risk of a privacy breach (though still possible to brute force the hash).
 * (+) Easiest approach for the prototype; we can adapt this to more flexible and private storage later.
 
-# Client-side Session Storage Alternatives
+## Client-side Session Storage Alternatives
 
 Store user session in a coookie.
 * (-) Possible legal requirement to have a GDPR warning.
