@@ -6,9 +6,10 @@ task-4, 1, Make sure that the server-side environment works locally, Shaun | Ant
 task-5, 9, Set up GoCD analytics, Shaun, https://www.gocd.org/analytics.html,
 task-6, 1, Point mylocal.farm at Digital Ocean instead of Azure, Shaun, n/a, Done
 task-7, 1, Setup OpenID Connect, Jesse | Shaun, n/a,
-task-7-1, 1, Introduce an 'POST ~/login' endpoint that receives an email address, Shaun, n/a,
-task-7-2, 1, Send a '~/authenticate/${password}' link to that email, Shaun, n/a,
-task-7-3, 1, Introduce an endpoint that handles the '~/authenticate/${password}' link, Shaun, n/a,
+task-7-1, 1, Introduce an 'POST ~/login' endpoint that receives an email address, Shaun, n/a, Done
+task-7-2, 1, Send a '~/authenticate/${password}' link to that email, Shaun, n/a, In Progress
+task-7-3, 1, Introduce an endpoint that handles the '~/authenticate/${password}' link, Shaun, n/a, Done
 task-7-4, 1, When the '~/authenticate/${password}' is valid - send an access_token, Shaun, n/a,
 task-7-5, 1, When the '~/authenticate/${password}' is invalid - send a 401 response, Shaun, n/a,
+task-7-6, 1, Give the production server access to the secret appsettings.json values, Shaun, n/a,
 task-8, 1, Fix continuous deployment, Shaun, n/a, Done
