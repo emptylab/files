@@ -6,9 +6,9 @@
 
 # Resources:
 
-https://docs.gocd.org/current/configuration/dev_authentication.html
-https://www.gocd.org/plugins/#authorization
-https://github.com/gocd-contrib/github-oauth-authorization-plugin/blob/master/INSTALL.md
+* https://docs.gocd.org/current/configuration/dev_authentication.html
+* https://www.gocd.org/plugins/#authorization
+* https://github.com/gocd-contrib/github-oauth-authorization-plugin/blob/master/INSTALL.md
 
 # Action: Spend 20-minutes setting up GitHub Auth for GoCD Server
 
