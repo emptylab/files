@@ -15,3 +15,5 @@ task-7-6, 1, Give the production server access to the secret appsettings.json va
 task-8, 1, Fix continuous deployment, Shaun, n/a, Done
 task-9, 1, Add authentication to GoCD server, Shaun, n/a, 
 task-10, 5, Set up a Discorse serve for conversations, Shaun, discourse.org, 
+task-11, 5, Set up Swagger/OpenAPI for endpoint testing, , ,
+task-12, 5, Set up xxx.emptylab.org for the continuous deployment server, , ,
