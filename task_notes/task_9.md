@@ -6,13 +6,13 @@
 
 # Resources:
 
-https://docs.gocd.org/current/configuration/dev_authentication.html
-https://www.gocd.org/plugins/#authorization
-https://github.com/gocd-contrib/github-oauth-authorization-plugin/blob/master/INSTALL.md
+* https://docs.gocd.org/current/configuration/dev_authentication.html
+* https://www.gocd.org/plugins/#authorization
+* https://github.com/gocd-contrib/github-oauth-authorization-plugin/blob/master/INSTALL.md
 
-# Action: Set up GitHub Auth for 20-minutes
+## Action: Spend 20-minutes setting up GitHub Auth for GoCD Server
 
-## Installation
+### Installation
 
 Clone and build the plugin source
 ```
@@ -58,7 +58,7 @@ docker container restart <containerId>
 
 After restart completes, check that the plugin is available: http://165.22.235.94:8153/go/admin/plugins
 
-## Configuration
+### Configuration
 
 Following the remaining instructions here for configuration: 
 https://github.com/gocd-contrib/github-oauth-authorization-plugin/blob/master/INSTALL.md#configuration
