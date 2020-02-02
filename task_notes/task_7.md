@@ -1,3 +1,10 @@
+# Time-based One Time Password Implementation in .NET Core
+
+.NET Core Resources
+
+- https://www.scottbrady91.com/ASPNET-Identity/Implementing-Mediums-Passwordless-Authentication-using-ASPNET-Core-Identity
+- https://andrewlock.net/implementing-custom-token-providers-for-passwordless-authentication-in-asp-net-core-identity/
+
 # One Time Password Approaches
 
 Based on my current, limited reading, TOTP wins because each one-time password is time-limited by definion.

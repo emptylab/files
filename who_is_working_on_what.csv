@@ -13,8 +13,8 @@ task-7-4, 1, When the '~/authenticate/${password}' is valid - send an access_tok
 task-7-5, 1, When the '~/authenticate/${password}' is invalid - send a 401 response, Shaun, n/a,
 task-7-6, 1, Give the production server access to the secret appsettings.json values, Shaun, n/a,
 task-8, 1, Fix continuous deployment, Shaun, n/a, Done
-task-9, 1, Add authentication to GoCD server, Shaun, n/a, 
+task-9, 1, Add authentication to GoCD server, Shaun, n/a, Done
 task-10, 5, Set up a Discorse serve for conversations, Shaun, discourse.org, 
 task-11, 5, Set up Swagger/OpenAPI for endpoint testing,,,
 task-12, 5, Set up xxx.emptylab.org for the continuous deployment server,,,
-task-13, 2 Emit build out from npm when we run dotnet build/run/publish, shaun ,,, 
+task-13, 2 Emit build output from npm when we run dotnet build/run/publish, shaun ,,, 
